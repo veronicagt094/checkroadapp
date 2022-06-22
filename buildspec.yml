@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+        - python -m pip install Flask
+  build:
+    commands:
+      - echo Build started on `date`
+      - python checkroadapp
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - buildspec.yml
+    - appspec.yml
+    - components/Account.js
+    - components/Auth.js
+    - pages/_app.js
+    - pages/index.js
+    - pages/api/hello.js
+    - public/favicon.ico
+    - public/vercel.svg
+    - styles/Home.module.css
+    - styles/global.css
+    - utils/supabaseClient.js
+    - .eslintrc.json
+    - next.config.js
+    - package-lock.json
+    - package.json
+    
+    
