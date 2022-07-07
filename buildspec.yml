@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo Installing dependency...
-      - npm i
+      - npm install next -g
   pre_build:
     commands:
       - printenv > .env
@@ -17,5 +17,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-    
     
