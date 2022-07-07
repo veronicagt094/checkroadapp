@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo Installing dependency...
-      - npm install -g next
+      - npx next build
       - yarn
   pre_build:
     commands:
