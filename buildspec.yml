@@ -1,9 +1,15 @@
 version: 0.2
 
 phases:
-   install:
+  install:
+    runtime-versions:
+      nodejs: 10
     commands:
+      - echo Installing dependency...
       - npm install next -g
+  pre_build:
+    commands:
+      - printenv > .env
   build:
     commands:
       - npx next build
@@ -12,21 +18,5 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - buildspec.yml
-    - appspec.yml
-    - components/Account.js
-    - components/Auth.js
-    - pages/_app.js
-    - pages/index.js
-    - pages/api/hello.js
-    - public/favicon.ico
-    - public/vercel.svg
-    - styles/Home.module.css
-    - styles/global.css
-    - utils/supabaseClient.js
-    - .eslintrc.json
-    - next.config.js
-    - package-lock.json
-    - package.json
-    
+    - '**/*'
     
