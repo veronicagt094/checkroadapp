@@ -1,16 +1,15 @@
-import Boton from "../components/Boton";
 import InputFormulario from "../components/InputFormulario";
 import LabelFormulario from "../components/LabelFormulario";
 import ListBox from "../components/ListBox";
 import Header from "../components/Header";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
 import Footer from "../components/Footer";
+import Boton from "../components/Boton";
+import { Icon } from "@iconify/react";
 
 export default function ActualizarVehiculo() {
   return (
     <div className="bg-fondo h-screen">
-      <Header text="Actualizar Vehículo"></Header>
+      <Header text="Actualizar Vehículo" href="/ActualizarVehiculo"></Header>
       <div className="mx-56 h-96 w-auto place-items-center my-16">
         <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
           <LabelFormulario text="Placa"></LabelFormulario>

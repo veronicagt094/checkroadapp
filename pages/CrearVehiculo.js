@@ -1,4 +1,5 @@
 import Boton from "../components/Boton";
+import Navbar from "../components/Navbar";
 import InputFormulario from "../components/InputFormulario";
 import LabelFormulario from "../components/LabelFormulario";
 import ListBox from "../components/ListBox";
@@ -9,9 +10,15 @@ import Footer from "../components/Footer";
 
 export default function CrearVehiculo() {
   return (
-    <div className="bg-fondo h-screen">
-      <Header text="Crear Vehículo"></Header>
-      <div className="mx-56 h-96 w-auto place-items-center my-16">
+    <div className="flex bg-fondo h-screen">
+      <div className="w-1/4">
+        <Navbar></Navbar>
+      </div>
+
+      <div className="mx-56 h-96 w-3/4  place-items-center">
+        <div className="mb-12 h-10 text-center">
+          <h1 className="text-azul text-2xl my-6">CREAR CONDUCTOR</h1>
+        </div>
         <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
           <LabelFormulario text="Placa"></LabelFormulario>
           <LabelFormulario text="Modelo"></LabelFormulario>
@@ -42,9 +49,9 @@ export default function CrearVehiculo() {
             <Boton text="Crear"></Boton>
           </div>
         </form>
-      </div>
-      <div className="mt-56">
-        <Footer></Footer>
+        <div className="mt-16">
+          <Footer></Footer>
+        </div>
       </div>
     </div>
   );

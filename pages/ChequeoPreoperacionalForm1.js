@@ -7,7 +7,10 @@ import Boton from "../components/Boton";
 export default function ChequeoPreoperacionalForm1() {
   return (
     <div className="bg-fondo h-screen">
-      <Header text="DILIGENCIAR CHEQUEO PREOPERACIONAL"></Header>
+      <Header
+        text="DILIGENCIAR CHEQUEO PREOPERACIONAL"
+        href="/ChequeoPreoperacionalInfo"
+      ></Header>
       <div className="mx-36 h-96 w-auto place-items-center my-16">
         <div className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8 mt-32">
           <form className="shadow-md rounded-lg mx-4">

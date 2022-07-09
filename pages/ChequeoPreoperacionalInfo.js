@@ -1,16 +1,23 @@
-import Boton from "../components/Boton";
 import InputFormulario from "../components/InputFormulario";
 import LabelFormulario from "../components/LabelFormulario";
-import ListBox from "../components/ListBox";
 import Header from "../components/Header";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
 import Footer from "../components/Footer";
+import Boton from "../components/Boton";
+import Router from "next/router";
 
 export default function ChequeoPreoperacionalInfo() {
+  async function diligenciarChequeoForm1(e) {
+    e.preventDefault();
+    Router.push("/ChequeoPreoperacionalForm1");
+    console.log("Next");
+  }
+
   return (
     <div className="bg-fondo h-screen">
-      <Header text="DILIGENCIAR CHEQUEO PREOPERACIONAL"></Header>
+      <Header
+        text="DILIGENCIAR CHEQUEO PREOPERACIONAL"
+        href="/ChequeoPreoperacional"
+      ></Header>
       <div className="mx-56 h-96 w-auto place-items-center my-16">
         <form className="shadow-md rounded-lg bg-blanco py-8">
           <div className="flex">
@@ -55,7 +62,7 @@ export default function ChequeoPreoperacionalInfo() {
           </div>
 
           <div className="text-center mt-4">
-            <Boton text="SIGUIENTE"></Boton>
+            <Boton onClick={diligenciarChequeoForm1} text="SIGUIENTE"></Boton>
           </div>
         </form>
       </div>

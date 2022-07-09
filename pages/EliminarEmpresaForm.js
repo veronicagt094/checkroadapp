@@ -2,25 +2,27 @@ import Boton from "../components/Boton";
 import InputFormulario from "../components/InputFormulario";
 import LabelFormulario from "../components/LabelFormulario";
 import Header from "../components/Header";
+import { Icon } from "@iconify/react";
+import Link from "next/link";
 import Footer from "../components/Footer";
 
-export default function EliminarConductorForm() {
+export default function EliminarEmpresaForm() {
   return (
     <div className="bg-fondo h-screen">
-      <Header text="ELIMINAR CONDUCTOR" href="/EliminarConductor"></Header>
+      <Header text="ELIMINAR EMPRESA" href="/EliminarEmpresa"></Header>
 
       <div className="mx-56 h-96 w-auto place-items-center my-32">
         <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
+          <LabelFormulario text="NIT"></LabelFormulario>
           <LabelFormulario text="Nombre"></LabelFormulario>
-          <LabelFormulario text="Apellido"></LabelFormulario>
           <InputFormulario></InputFormulario>
           <InputFormulario></InputFormulario>
-          <LabelFormulario text="Fecha de Nacimiento"></LabelFormulario>
           <LabelFormulario text="Correo Electronico"></LabelFormulario>
+          <LabelFormulario text="Número de conductor"></LabelFormulario>
           <InputFormulario></InputFormulario>
           <InputFormulario></InputFormulario>
-          <LabelFormulario text="Telefono Celular"></LabelFormulario>
-          <LabelFormulario text="Número de documento - Tipo"></LabelFormulario>
+          <LabelFormulario text="Número de vehículos"></LabelFormulario>
+          <LabelFormulario text="Camara y comercio"></LabelFormulario>
           <InputFormulario></InputFormulario>
           <InputFormulario></InputFormulario>
           <div className="text-center my-6">

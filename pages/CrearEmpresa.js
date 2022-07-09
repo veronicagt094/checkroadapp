@@ -1,18 +1,24 @@
-import Boton from "../components/Boton";
 import InputFormulario from "../components/InputFormulario";
 import LabelFormulario from "../components/LabelFormulario";
 import ListBox from "../components/ListBox";
 import Header from "../components/Header";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
+import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Boton from "../components/Boton";
+import { Icon } from "@iconify/react";
 
 export default function CrearEmpresa() {
   return (
-    <div className="bg-fondo h-screen">
-      <Header text="Crear Empresa"></Header>
-      <div className="mx-56 h-96 w-auto place-items-center my-16">
-        <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
+    <div className="flex bg-fondo h-screen">
+      <div className="w-1/4">
+        <Navbar></Navbar>
+      </div>
+      <div className="h-96 w-3/4 place-items-center mx-36">
+        <div className="mb-12 h-10 text-center">
+          <h1 className="text-azul text-2xl my-6">CREAR EMPRESA</h1>
+        </div>
+
+        <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-4 my-20">
           <LabelFormulario text="NIT"></LabelFormulario>
           <LabelFormulario text="Nombre"></LabelFormulario>
           <InputFormulario></InputFormulario>
@@ -37,9 +43,9 @@ export default function CrearEmpresa() {
             <Boton text="Crear"></Boton>
           </div>
         </form>
-      </div>
-      <div className="mt-56">
-        <Footer></Footer>
+        <div className="mt-36">
+          <Footer></Footer>
+        </div>
       </div>
     </div>
   );

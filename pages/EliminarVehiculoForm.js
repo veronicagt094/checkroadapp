@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 export default function EliminarVehiculo() {
   return (
     <div className="bg-fondo h-screen">
-      <Header text="Eliminar Vehículo"></Header>
+      <Header text="Eliminar Vehículo" href="/EliminarVehiculo"></Header>
       <div className="mx-56 h-96 w-auto place-items-center my-16">
         <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
           <LabelFormulario text="Placa"></LabelFormulario>

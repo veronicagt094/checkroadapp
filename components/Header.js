@@ -6,7 +6,7 @@ export default function Boton(props) {
     <div className="mx-4 grid grid-cols-3 h-10">
       <div className="flex flex-row">
         <button className="flex-row rounded-sm">
-          <Link href="/InicioEmpresa">
+          <Link href={props.href}>
             <a>
               <Icon
                 icon="eva:arrow-ios-back-fill"
