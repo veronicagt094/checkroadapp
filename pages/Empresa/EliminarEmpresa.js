@@ -1,7 +1,7 @@
-import Boton from "../components/Boton";
-import Navbar from "../components/Navbar";
-import InputFormulario from "../components/InputFormulario";
-import Footer from "../components/Footer";
+import Boton from "../../components/Boton";
+import Navbar from "../../components/Navbar";
+import InputFormulario from "../../components/InputFormulario";
+import Footer from "../../components/Footer";
 import Router from "next/router";
 
 export default function EliminarEmpresa() {

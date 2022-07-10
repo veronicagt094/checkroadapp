@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
 import { supabase } from "../utils/supabaseClient";
-import Auth from "./Auth";
+
+import { useState, useEffect } from "react";
 import InicioEmpresa from "./InicioEmpresa";
+import Auth from "./Auth";
 
 export default function Home() {
   const [session, setSession] = useState(null);
@@ -15,9 +16,9 @@ export default function Home() {
     });
   }, []);
 
-  return (
-    <div className="bg-fondo h-screen font-sans">
-      {session != null ? <InicioEmpresa /> : <Auth />}
-    </div>
+  return ( 
+      <div className="bg-fondo h-screen font-sans">
+        {session != null ? <InicioEmpresa /> : <Auth />}
+      </div>
   );
 }

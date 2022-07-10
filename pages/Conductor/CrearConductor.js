@@ -1,16 +1,18 @@
-import InputFormulario from "../components/InputFormulario";
-import LabelFormulario from "../components/LabelFormulario";
-import { supabase } from "../utils/supabaseClient";
-import Dropdown from "../components/Dropdown";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Boton from "../components/Boton";
-import { Icon } from "@iconify/react";
+import InputFormulario from "../../components/InputFormulario";
+import LabelFormulario from "../../components/LabelFormulario";
+import { supabase } from "../../utils/supabaseClient";
+import Dropdown from "../../components/Dropdown";
 import { useState } from "react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Boton from "../../components/Boton";
+import { Icon } from "@iconify/react";
 
-export default function CrearConductor() {
+export default function CrearConductor({
+  tiposDocumentos,
+  categoriasConduccion,
+}) {
   const [conductor, setConductor] = useState([]);
-  const [tiposDocumento, setTiposDocumento] = useState([]);
 
   const {
     numDocumento,
@@ -20,11 +22,11 @@ export default function CrearConductor() {
     direccion,
     celular,
     correo,
+    fechaLicencia,
   } = conductor;
 
   const submitContact = async (event) => {
     event.preventDefault();
-    alert("Sobelo mi papá");
   };
 
   function onChange(e) {
@@ -51,18 +53,6 @@ export default function CrearConductor() {
         },
       ])
       .single();
-
-    console.log("Conductor creado");
-  }
-
-  async function getTipoDocumento(e) {
-    e.preventDefault();
-
-    let { data: TipoDocumento, error } = await supabase
-      .from("TipoDocumento")
-      .select("*");
-    if (error) console.log("error", error);
-    else setTiposDocumento(TipoDocumento);
   }
 
   return (
@@ -87,19 +77,17 @@ export default function CrearConductor() {
             onChange={onChange}
             value={conductor.numDocumento}
           ></InputFormulario>
-          <InputFormulario
-            name="tipoDocumento"
-            onChange={onChange}
-            value={conductor.tipoDocumento}
-          ></InputFormulario>
+          <Dropdown items={tiposDocumentos.data}></Dropdown>
           <LabelFormulario text="Nombre"></LabelFormulario>
           <LabelFormulario text="Primer Apellido"></LabelFormulario>
           <InputFormulario
+            type="text"
             name="nombre"
             onChange={onChange}
             value={conductor.nombre}
           ></InputFormulario>
           <InputFormulario
+            type="text"
             name="primerApellido"
             onChange={onChange}
             value={conductor.primerApellido}
@@ -107,11 +95,13 @@ export default function CrearConductor() {
           <LabelFormulario text="Segundo Apellido"></LabelFormulario>
           <LabelFormulario text="Fecha de Nacimiento"></LabelFormulario>
           <InputFormulario
+            type="text"
             name="segundoApellido"
             onChange={onChange}
             value={conductor.segundoApellido}
           ></InputFormulario>
           <InputFormulario
+            type="date"
             name="fechaNacimiento"
             onChange={onChange}
             value={conductor.segundoApellido}
@@ -119,19 +109,26 @@ export default function CrearConductor() {
           <LabelFormulario text="Correo Electronico"></LabelFormulario>
           <LabelFormulario text="Telefono Celular"></LabelFormulario>
           <InputFormulario
+            type="email"
             name="correo"
             onChange={onChange}
             value={conductor.correo}
           ></InputFormulario>
           <InputFormulario
+            type="number"
             name="celular"
             onChange={onChange}
             value={conductor.celular}
           ></InputFormulario>
           <LabelFormulario text="Categoria de licencia de conducción"></LabelFormulario>
           <LabelFormulario text="Fecha de vencimiento de licencia"></LabelFormulario>
-          <InputFormulario></InputFormulario>
-          <InputFormulario></InputFormulario>
+          <Dropdown items={categoriasConduccion.data}></Dropdown>
+          <InputFormulario
+            type="date"
+            name="fechaLicencia"
+            onChange={onChange}
+            value={conductor.fechaLicencia}
+          ></InputFormulario>
           <div className="mx-52 my-4">
             <Icon icon="entypo:upload" width="60" height="50" color="#4380CC" />
           </div>
@@ -157,4 +154,20 @@ export default function CrearConductor() {
       </div> */}
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const responseTiposDocumento = await supabase
+    .from("TipoDocumento")
+    .select("*");
+  const responseCategoriaConduccion = await supabase
+    .from("CategoriaConduccion")
+    .select("*");
+
+  return {
+    props: {
+      tiposDocumentos: responseTiposDocumento,
+      categoriasConduccion: responseCategoriaConduccion,
+    },
+  };
 }

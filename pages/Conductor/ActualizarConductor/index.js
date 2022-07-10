@@ -1,17 +1,21 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import Boton from "../components/Boton";
-import InputFormulario from "../components/InputFormulario";
-import Footer from "../components/Footer";
-import { Icon } from "@iconify/react";
-import Link from "next/link";
+import InputFormulario from "../../../components/InputFormulario";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
+import Boton from "../../../components/Boton";
 import Router from "next/router";
-import Navbar from "../components/Navbar";
 
-export default function EliminarConductor() {
-  async function eliminarConductor(e) {
+export default function ActualizarConductor() {
+  const [numDoc, setNumDoc] = useState([]);
+  const { numDocumento } = numDoc;
+
+  async function actualizarConductor(e) {
     e.preventDefault();
-    Router.push("/EliminarConductorForm");
-    console.log("Next");
+    Router.push({
+      pathname: "./EliminarConductor/[docEliminar]",
+      query: { docEliminar: numDoc.numDocumento },
+    });
+    Router.push("./ActualizarConductor/[numDoc]");
   }
   return (
     <div className="flex bg-fondo h-screen">
@@ -22,7 +26,7 @@ export default function EliminarConductor() {
       <div className="h-96 w-3/4 place-items-center px-24">
         <div className="mb-12 h-10 text-center">
           <h1 className="text-azul text-center text-2xl my-6">
-            ELIMINAR CONDUCTOR
+            ACTUALIZAR CONDUCTOR
           </h1>
         </div>
         <form className="shadow-md rounded-xl bg-blanco grid grid-col-1 py-20 mx-48">
@@ -36,7 +40,7 @@ export default function EliminarConductor() {
             </div>
 
             <div className="text-center">
-              <Boton onClick={eliminarConductor} text="BUSCAR"></Boton>
+              <Boton onClick={actualizarConductor} text="BUSCAR"></Boton>
             </div>
           </div>
         </form>

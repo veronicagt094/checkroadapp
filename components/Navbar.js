@@ -1,8 +1,9 @@
-import React from "react";
-import { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { Icon } from "@iconify/react";
+import { useState } from "react";
 import Link from "next/link";
+import React from "react";
+
 function SideNavbar() {
   const [open, setOpen] = useState(true);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
@@ -13,13 +14,16 @@ function SideNavbar() {
       icon: "fa:drivers-license",
       submenu: true,
       submenusItems: [
-        { title: "Crear Conducto", link: "CrearConductor" },
+        {
+          title: "Crear Conductor",
+          link: `/Conductor/CrearConductor`,
+        },
         { title: "Eliminar Conductor", link: "EliminarConductor" },
         { title: "Actualizar Conductor", link: "ActualizarConductor" },
       ],
     },
     {
-      title: "Empresa",
+      title: "Administrador",
       icon: "carbon:enterprise",
       submenu: true,
       submenusItems: [
@@ -61,10 +65,7 @@ function SideNavbar() {
             aria-hidden="true"
           />
         </Disclosure.Button>
-        {/* <div className="flex"> */}
         <div
-          // className={`bg-blanco text-azulOscuro flex-col justify-start item-center p-6 h-screen z-20  top-0 -left-96 lg:left-0 lg:w-60  peer-focus:left-0 peer:transition ease-out delay-150 duration-200
-          //  ${open ? "w-72" : "w-20"} duration-300 relative`}
           className={`bg-blanco text-azulOscuro h-screen p-5 pt-8 ${
             open ? "w-72" : "w-20"
           } duration-300 relative`}
@@ -103,7 +104,10 @@ function SideNavbar() {
                     className="text-2xl block float-left cursor-pointer mr-2"
                   />
                 </span>
-                <Link href={`/${encodeURIComponent(menu.link)}`}>
+                <Link
+                  // href={`/${encodeURIComponent(menu.link)}`}
+                  href={`${encodeURIComponent(JSON.stringify(menu.link))}`}
+                >
                   <a
                     className={`text-base font-medium flex-1 ${
                       !open && "hidden"
@@ -112,13 +116,6 @@ function SideNavbar() {
                     {menu.title}
                   </a>
                 </Link>
-                {/* <span
-                  className={`text-base font-medium flex-1 ${
-                    !open && "hidden"
-                  }`}
-                >
-                  {menu.title}
-                </span> */}
                 {menu.submenu && (
                   <Icon
                     icon="gridicons:dropdown"
@@ -148,7 +145,6 @@ function SideNavbar() {
             ))}
           </ul>
         </div>
-        {/* </div> */}
       </Disclosure>
     </div>
   );

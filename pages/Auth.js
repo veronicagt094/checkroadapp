@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { supabase } from "../utils/supabaseClient";
-import Link from "next/link";
 import Boton from "../components/Boton";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Auth() {
   const [password, setPassword] = useState("");
@@ -28,12 +29,12 @@ export default function Auth() {
 
   return (
     <div className="grid grid-cols-2 xl:mx-20">
-      <div className="">
+      <div className="my-4">
         <h1 className="checkroadLogin mt-20">CheckRoad App</h1>
-        <h2 className="checkroadLogin pt-20">Logo</h2>
+        <Image src="/logoHS.png" width={400} height={400} alt="Logo HS" />
       </div>
 
-      <div className="bg-blanco shadow-md rounded-lg px-8 py-28 my-36 mx-12">
+      <div className="bg-blanco shadow-md rounded-lg px-8 py-28 my-28 mx-12">
         <form>
           <h1 className="tituloFormulario">Iniciar sesión</h1>
           <input
@@ -52,7 +53,7 @@ export default function Auth() {
             value={password}
           />
         </form>
-        <div className="xl:ml-44 lg:ml-24">
+        <div className="xl:ml-44 lg:ml-24 mt-4">
           <Boton text="Iniciar sesión"></Boton>
           {/* <Link href="/InicioEmpresa">
             <a className="bg-azul hover:bg-blue-700 text-blanco font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-10">

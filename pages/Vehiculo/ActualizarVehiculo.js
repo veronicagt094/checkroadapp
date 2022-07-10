@@ -1,13 +1,13 @@
-import InputFormulario from "../components/InputFormulario";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import Boton from "../components/Boton";
+import InputFormulario from "../../components/InputFormulario";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Boton from "../../components/Boton";
 import Router from "next/router";
 
-export default function ActualizarEmpresa() {
-  async function actualizarEmpresa(e) {
+export default function ActualizarVehiculo() {
+  async function actualizarVehiculo(e) {
     e.preventDefault();
-    Router.push("/ActualizarEmpresaForm");
+    Router.push("/ActualizarVehiculoForm");
     console.log("Next");
   }
   return (
@@ -19,13 +19,13 @@ export default function ActualizarEmpresa() {
       <div className="h-96 w-3/4 place-items-center px-24">
         <div className="mb-12 h-10 text-center">
           <h1 className="text-azul text-center text-2xl my-6">
-            ACTUALIZAR EMPRESA
+            ACTUALIZAR VEHÍCULO
           </h1>
         </div>
 
         <form className="shadow-md rounded-xl bg-blanco grid grid-col-1 py-20 mx-48 my-24">
           <div className="text-center">
-            <InputFormulario placeholder="NIT"></InputFormulario>
+            <InputFormulario placeholder="Número de placa"></InputFormulario>
           </div>
 
           <div className="flex py-12 mx-32">
@@ -34,7 +34,7 @@ export default function ActualizarEmpresa() {
             </div>
 
             <div className="text-center">
-              <Boton onClick={actualizarEmpresa} text="BUSCAR"></Boton>
+              <Boton onClick={actualizarVehiculo} text="BUSCAR"></Boton>
             </div>
           </div>
         </form>
