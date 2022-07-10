@@ -3,9 +3,12 @@ AWS.config.update({region: 'eu-central-1'});
 
 
 AWS.config.update({
-    accessKeyId: config.awsClientID,
-    secretAccessKey: config.awsClientSecret,
-  });
+      region: "eu-central-1",
+      credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID ?? "",
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY ?? "",
+      },
+    });
 
 
 // Create publish parameters
