@@ -1,6 +1,13 @@
 var AWS = require('aws-sdk');
 AWS.config.update({region: 'eu-central-1'});
 
+
+AWS.config.update({
+    accessKeyId: config.awsClientID,
+    secretAccessKey: config.awsClientSecret,
+  });
+
+
 // Create publish parameters
 var params = {
     Message: 'Chequeo pre operacional diligenciado', /* required */
