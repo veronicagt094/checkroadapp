@@ -1,42 +1,52 @@
-import InputFormulario from "../../../components/InputFormulario";
-import LabelFormulario from "../../../components/LabelFormulario";
-import { supabase } from "../../../utils/supabaseClient";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import Boton from "../../../components/Boton";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import InputFormulario from '../../../components/InputFormulario'
+import LabelFormulario from '../../../components/LabelFormulario'
+import {supabase} from '../../../utils/supabaseClient'
+import Header from '../../../components/Header'
+import Footer from '../../../components/Footer'
+import Boton from '../../../components/Boton'
+import {useState, useEffect} from 'react'
+import {useRouter} from 'next/router'
+import {toast} from '../../../utils/toast'
 
-export default function EliminarConductorForm({ infoConductor }) {
-  const router = useRouter();
-  const docEliminar = router.query.docEliminar;
-  const [conductor, setConductor] = useState([]);
-  console.log(infoConductor);
-  useEffect(() => {
-    //getConductor();
-  });
+export default function EliminarConductorForm({infoConductor}) {
+  const router = useRouter()
+  const docEliminar = router.query.docEliminar
+  const [conductor, setConductor] = useState([])
 
   async function getConductor() {
-    let { data: Conductor, error } = await supabase
-      .from("Persona")
-      .select("*")
-      .eq("documento", docEliminar);
-    if (error) console.log("error", error);
-    else setConductor(Conductor);
-    console.log(conductor);
+    let {data: Conductor, error} = await supabase
+      .from('Persona')
+      .select('*')
+      .eq('documento', docEliminar)
+    if (error) console.log('error', error)
+    else setConductor(Conductor)
+    console.log(conductor)
   }
 
   async function eliminarConductor(e) {
-    e.preventDefault();
+    e.preventDefault()
+    try {
+      const {data, error} = await supabase
+        .from('Persona')
+        .delete()
+        .eq('documento', infoConductor.data[0].documento)
 
-    const { data, error } = await supabase
-      .from("Persona")
-      .delete()
-      .eq("documento", infoConductor.data[0].documento);
-    if (error) console.log("error", error);
-    else alert("Conductor Eliminado");
+      if (data) {
+        // alert('Conductor Eliminado')
 
-    infoConductor = [];
+        toast({
+          title: 'Conductor Eliminado',
+          description: `el conductor con cedula ${infoConductor.data[0].documento} ha sido eliminado`,
+          status: 'success',
+          position: 'bottom-right',
+          duration: 9000,
+          isClosable: true,
+        })
+        e.target.reset()
+      }
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
   return (
@@ -47,11 +57,15 @@ export default function EliminarConductorForm({ infoConductor }) {
       ></Header>
 
       <div className="mx-56 h-96 w-auto place-items-center my-32">
-        <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
+        <form
+          className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8"
+          onSubmit={eliminarConductor}
+        >
           <LabelFormulario text="Nombre"></LabelFormulario>
           <LabelFormulario text="Apellido"></LabelFormulario>
           <InputFormulario
             type="text"
+            id="numDocumento"
             name="numDocumento"
             value={infoConductor.data[0].nombre}
             readonly="readonly"
@@ -94,7 +108,7 @@ export default function EliminarConductorForm({ infoConductor }) {
             <Boton text="CANCELAR"></Boton>
           </div>
           <div className="text-center my-6">
-            <Boton onClick={eliminarConductor} text="ELIMINAR"></Boton>
+            <Boton type="submit" text="ELIMINAR"></Boton>
           </div>
         </form>
       </div>
@@ -103,23 +117,23 @@ export default function EliminarConductorForm({ infoConductor }) {
         <Footer></Footer>
       </div>
     </div>
-  );
+  )
 }
 
 export async function getServerSideProps(context) {
-  const { params } = context;
-  const { docEliminar } = params;
-  console.log(docEliminar);
+  const {params} = context
+  const {docEliminar} = params
+  console.log(docEliminar)
   const conductor = await supabase
-    .from("Persona")
-    .select("*")
-    .eq("documento", docEliminar);
+    .from('Persona')
+    .select('*')
+    .eq('documento', docEliminar)
 
-  console.log(conductor);
+  console.log(conductor)
 
   return {
     props: {
       infoConductor: JSON.parse(JSON.stringify(conductor)),
     },
-  };
+  }
 }

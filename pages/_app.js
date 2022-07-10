@@ -1,14 +1,14 @@
-import { ChakraProvider } from "@chakra-ui/react";
-import "../styles/globals.css";
-import { createStandaloneToast } from "@chakra-ui/toast";
+import {ChakraProvider} from '@chakra-ui/react'
+import '../styles/globals.css'
+import {ToastContainer} from '../utils/toast'
 
-const { ToastContainer, toast } = createStandaloneToast();
-function MyApp({ Component, pageProps }) {
-  // <ChakraProvider>
-  return <Component {...pageProps} />;
-  <ToastContainer />;
-  // <Component {...pageProps} />;
-  // </ChakraProvider>;
+function MyApp({Component, pageProps}) {
+  return (
+    <ChakraProvider>
+      <Component {...pageProps} />
+      <ToastContainer />
+    </ChakraProvider>
+  )
 }
 
-export default MyApp;
+export default MyApp
