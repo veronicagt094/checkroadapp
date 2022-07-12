@@ -6,13 +6,13 @@ export default function LabelItemChequeo(props) {
       <label className="border-r basis-1/12"> {num}</label>
       <label className="border-r basis-8/12"> {text}</label>
       <div className="border-r basis-1/12">
-        <input type="radio" value="B"></input>
+        <input type="radio" value="B" name={props.name}></input>
       </div>
       <div className="border-r basis-1/12">
-        <input type="radio" value="B"></input>
+        <input type="radio" value="R" name={props.name}></input>
       </div>
       <div className="basis-1/12">
-        <input type="radio" value="B"></input>
+        <input type="radio" value="M" name={props.name}></input>
       </div>
     </div>
   );

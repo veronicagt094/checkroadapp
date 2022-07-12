@@ -20,7 +20,6 @@ export default function EliminarConductor() {
   function onChange(e) {
     e.preventDefault();
     setNumDoc(() => ({ ...numDoc, [e.target.name]: e.target.value }));
-    console.log(numDoc);
   }
 
   return (

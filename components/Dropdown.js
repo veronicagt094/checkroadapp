@@ -1,10 +1,8 @@
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { Icon } from "@iconify/react";
-
 export default function Dropdown(props) {
   const [selected, setSelected] = useState(props.items[0]);
-  console.log(props.items);
 
   return (
     <div className="bg-fondo rounded-2xl mx-4">

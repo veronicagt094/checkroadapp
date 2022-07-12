@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import Boton from "../components/Boton";
-import Navbar from "../components/Navbar";
-import InputFormulario from "../components/InputFormulario";
-import Footer from "../components/Footer";
+import InputFormulario from "../../components/InputFormulario";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Boton from "../../components/Boton";
 import Router from "next/router";
 
 export default function EliminarVehiculo() {

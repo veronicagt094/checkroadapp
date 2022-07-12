@@ -1,12 +1,9 @@
-import Boton from "../components/Boton";
-import Navbar from "../components/Navbar";
-import InputFormulario from "../components/InputFormulario";
-import LabelFormulario from "../components/LabelFormulario";
-import ListBox from "../components/ListBox";
-import Header from "../components/Header";
+import InputFormulario from "../../components/InputFormulario";
+import LabelFormulario from "../../components/LabelFormulario";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import Boton from "../../components/Boton";
 import { Icon } from "@iconify/react";
-import Link from "next/link";
-import Footer from "../components/Footer";
 
 export default function CrearVehiculo() {
   return (
@@ -17,7 +14,7 @@ export default function CrearVehiculo() {
 
       <div className="mx-56 h-96 w-3/4  place-items-center">
         <div className="mb-12 h-10 text-center">
-          <h1 className="text-azul text-2xl my-6">CREAR CONDUCTOR</h1>
+          <h1 className="text-azul text-2xl my-6">CREAR VEHÍCULO</h1>
         </div>
         <form className="shadow-md rounded-lg bg-blanco grid grid-cols-2 py-8">
           <LabelFormulario text="Placa"></LabelFormulario>

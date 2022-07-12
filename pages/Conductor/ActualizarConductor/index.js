@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import InputFormulario from "../../../components/InputFormulario";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import Boton from "../../../components/Boton";
 import Router from "next/router";
+import { useState } from "react";
 
 export default function ActualizarConductor() {
   const [numDoc, setNumDoc] = useState([]);
@@ -12,11 +12,16 @@ export default function ActualizarConductor() {
   async function actualizarConductor(e) {
     e.preventDefault();
     Router.push({
-      pathname: "./EliminarConductor/[docEliminar]",
-      query: { docEliminar: numDoc.numDocumento },
+      pathname: "./ActualizarConductor/[numDoc]",
+      query: { numDoc: numDoc.numDocumento },
     });
-    Router.push("./ActualizarConductor/[numDoc]");
   }
+
+  function onChange(e) {
+    e.preventDefault();
+    setNumDoc(() => ({ ...numDoc, [e.target.name]: e.target.value }));
+  }
+
   return (
     <div className="flex bg-fondo h-screen">
       <div className="w-1/4">
@@ -31,7 +36,14 @@ export default function ActualizarConductor() {
         </div>
         <form className="shadow-md rounded-xl bg-blanco grid grid-col-1 py-20 mx-48">
           <div className="text-center">
-            <InputFormulario placeholder="Número de documento"></InputFormulario>
+            <InputFormulario
+              id="numDocumento"
+              type="text"
+              name="numDocumento"
+              onChange={onChange}
+              value={numDoc.numDocumento}
+              placeholder="Número de documento"
+            ></InputFormulario>
           </div>
 
           <div className="flex py-12 mx-32">

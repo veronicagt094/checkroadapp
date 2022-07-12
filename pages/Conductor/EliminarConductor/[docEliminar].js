@@ -1,60 +1,55 @@
-import InputFormulario from '../../../components/InputFormulario'
-import LabelFormulario from '../../../components/LabelFormulario'
-import {supabase} from '../../../utils/supabaseClient'
-import Header from '../../../components/Header'
-import Footer from '../../../components/Footer'
-import Boton from '../../../components/Boton'
-import {useState, useEffect} from 'react'
-import {useRouter} from 'next/router'
-import {toast} from '../../../utils/toast'
+import InputFormulario from "../../../components/InputFormulario";
+import LabelFormulario from "../../../components/LabelFormulario";
+import { supabase } from "../../../utils/supabaseClient";
+import Header from "../../../components/Header";
+import Footer from "../../../components/Footer";
+import Boton from "../../../components/Boton";
+import { toast } from "../../../utils/toast";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
-export default function EliminarConductorForm({infoConductor}) {
-  const router = useRouter()
-  const docEliminar = router.query.docEliminar
-  const [conductor, setConductor] = useState([])
+export default function EliminarConductorForm({ infoConductor }) {
+  const router = useRouter();
+  const docEliminar = router.query.docEliminar;
+  const [conductor, setConductor] = useState([]);
 
   async function getConductor() {
-    let {data: Conductor, error} = await supabase
-      .from('Persona')
-      .select('*')
-      .eq('documento', docEliminar)
-    if (error) console.log('error', error)
-    else setConductor(Conductor)
-    console.log(conductor)
+    let { data: Conductor, error } = await supabase
+      .from("Persona")
+      .select("*")
+      .eq("documento", docEliminar);
+    if (error) console.log("error", error);
+    else setConductor(Conductor);
+    console.log(conductor);
   }
 
   async function eliminarConductor(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const {data, error} = await supabase
-        .from('Persona')
+      const { data, error } = await supabase
+        .from("Persona")
         .delete()
-        .eq('documento', infoConductor.data[0].documento)
+        .eq("documento", infoConductor.data[0].documento);
 
       if (data) {
-        // alert('Conductor Eliminado')
-
         toast({
-          title: 'Conductor Eliminado',
-          description: `el conductor con cedula ${infoConductor.data[0].documento} ha sido eliminado`,
-          status: 'success',
-          position: 'bottom-right',
+          title: "Conductor Eliminado",
+          description: `El conductor con cedula ${infoConductor.data[0].documento} ha sido eliminado`,
+          status: "success",
+          position: "bottom-right",
           duration: 9000,
           isClosable: true,
-        })
-        e.target.reset()
+        });
+        e.target.reset();
       }
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
     }
   }
 
   return (
     <div className="bg-fondo h-screen">
-      <Header
-        text="ELIMINAR CONDUCTOR"
-        href="/Conductor/EliminarConductor"
-      ></Header>
+      <Header text="ELIMINAR CONDUCTOR" href="./"></Header>
 
       <div className="mx-56 h-96 w-auto place-items-center my-32">
         <form
@@ -62,17 +57,18 @@ export default function EliminarConductorForm({infoConductor}) {
           onSubmit={eliminarConductor}
         >
           <LabelFormulario text="Nombre"></LabelFormulario>
-          <LabelFormulario text="Apellido"></LabelFormulario>
+          <LabelFormulario text="Primer Apellido"></LabelFormulario>
           <InputFormulario
             type="text"
-            id="numDocumento"
-            name="numDocumento"
+            id="nombre"
+            name="nombre"
             value={infoConductor.data[0].nombre}
             readonly="readonly"
           ></InputFormulario>
           <InputFormulario
             type="text"
-            name="numDocumento"
+            id="primerApellido"
+            name="primerApellido"
             value={infoConductor.data[0].primerApellido}
             readonly="readonly"
           ></InputFormulario>
@@ -80,13 +76,15 @@ export default function EliminarConductorForm({infoConductor}) {
           <LabelFormulario text="Correo Electronico"></LabelFormulario>
           <InputFormulario
             type="text"
-            name="numDocumento"
+            id="fechaNacimiento"
+            name="fechaNacimiento"
             value={infoConductor.data[0].fechaNacimiento}
             readonly="readonly"
           ></InputFormulario>
           <InputFormulario
             type="email"
-            name="numDocumento"
+            id="correo"
+            name="correo"
             value={infoConductor.data[0].correo}
             readonly="readonly"
           ></InputFormulario>
@@ -94,13 +92,15 @@ export default function EliminarConductorForm({infoConductor}) {
           <LabelFormulario text="Número de documento - Tipo"></LabelFormulario>
           <InputFormulario
             type="text"
-            name="numDocumento"
+            id="telefono"
+            name="telefono"
             value={infoConductor.data[0].telefono}
             readonly="readonly"
           ></InputFormulario>
           <InputFormulario
             type="text"
-            name="numDocumento"
+            id="documento"
+            name="documento"
             value={infoConductor.data[0].documento}
             readonly="readonly"
           ></InputFormulario>
@@ -117,23 +117,21 @@ export default function EliminarConductorForm({infoConductor}) {
         <Footer></Footer>
       </div>
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
-  const {params} = context
-  const {docEliminar} = params
-  console.log(docEliminar)
-  const conductor = await supabase
-    .from('Persona')
-    .select('*')
-    .eq('documento', docEliminar)
+  const { params } = context;
+  const { docEliminar } = params;
 
-  console.log(conductor)
+  const conductor = await supabase
+    .from("Persona")
+    .select("*")
+    .eq("documento", docEliminar);
 
   return {
     props: {
       infoConductor: JSON.parse(JSON.stringify(conductor)),
     },
-  }
+  };
 }

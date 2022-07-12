@@ -1,4 +1,5 @@
 import { supabase } from "../utils/supabaseClient";
+import { toast } from "../utils/toast";
 import Boton from "../components/Boton";
 import { useState } from "react";
 import Image from "next/image";
@@ -15,9 +16,14 @@ export default function Auth() {
         password,
       });
       if (error) throw error;
-      alert("Sesión iniciada");
-      console.log(user);
-      console.log(session);
+      toast({
+        title: "Sesión iniciada",
+        description: `Sesión iniciada`,
+        status: "success",
+        position: "bottom-right",
+        duration: 9000,
+        isClosable: true,
+      });
     } catch (error) {
       alert(error.error_description || error.message);
     }
@@ -54,7 +60,7 @@ export default function Auth() {
           />
         </form>
         <div className="xl:ml-44 lg:ml-24 mt-4">
-          <Boton text="Iniciar sesión"></Boton>
+          <Boton onClick={handleSignIn} text="Iniciar sesión"></Boton>
           {/* <Link href="/InicioEmpresa">
             <a className="bg-azul hover:bg-blue-700 text-blanco font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-10">
               Prueba Front

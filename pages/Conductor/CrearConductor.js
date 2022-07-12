@@ -2,11 +2,12 @@ import InputFormulario from "../../components/InputFormulario";
 import LabelFormulario from "../../components/LabelFormulario";
 import { supabase } from "../../utils/supabaseClient";
 import Dropdown from "../../components/Dropdown";
-import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Boton from "../../components/Boton";
+import { toast } from "../../utils/toast";
 import { Icon } from "@iconify/react";
+import { useState } from "react";
 
 export default function CrearConductor({
   tiposDocumentos,
@@ -23,6 +24,7 @@ export default function CrearConductor({
     celular,
     correo,
     fechaLicencia,
+    password,
   } = conductor;
 
   const submitContact = async (event) => {
@@ -32,29 +34,59 @@ export default function CrearConductor({
   function onChange(e) {
     e.preventDefault();
     setConductor(() => ({ ...conductor, [e.target.name]: e.target.value }));
-    console.log(conductor);
   }
 
   async function crearConductor(e) {
     e.preventDefault();
-    console.log(conductor);
-    const { data } = await supabase
-      .from("Persona")
-      .insert([
-        {
-          documento: conductor.numDocumento,
-          nombre: conductor.nombre,
-          primerApellido: conductor.primerApellido,
-          segundoApellido: conductor.segundoApellido,
-          direccion: conductor.direccion,
-          telefono: conductor.celular,
-          correo: conductor.correo,
-          // user_id: user.id,
-        },
-      ])
-      .single();
+    try {
+      const { data } = await supabase
+        .from("Persona")
+        .insert([
+          {
+            documento: conductor.numDocumento,
+            nombre: conductor.nombre,
+            primerApellido: conductor.primerApellido,
+            segundoApellido: conductor.segundoApellido,
+            direccion: conductor.direccion,
+            telefono: conductor.celular,
+            idTipoUsuario: "2",
+            correo: conductor.correo,
+            // user_id: user.id,
+          },
+        ])
+        .single();
+
+      if (data) {
+        handleSignUp();
+        toast({
+          title: "Conductor Creado",
+          description: `El conductor con cedula ${conductor.numDocumento} ha sido creado, se ha enviado un correo al correo indicado`,
+          status: "success",
+          position: "bottom-right",
+          duration: 9000,
+          isClosable: true,
+        });
+        e.target.reset();
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
   }
 
+  const handleSignUp = async () => {
+    try {
+      const { user, session, error } = await supabase.auth.signUp({
+        email: conductor.correo,
+        password: conductor.password,
+      });
+      if (error) throw error;
+      alert("Valida tu correo");
+      console.log(user);
+      console.log(session);
+    } catch (error) {
+      alert(error.error_description || error.message);
+    }
+  };
   return (
     <div className="flex bg-fondo h-screen">
       <div className="w-1/4">
@@ -129,7 +161,14 @@ export default function CrearConductor({
             onChange={onChange}
             value={conductor.fechaLicencia}
           ></InputFormulario>
-          <div className="mx-52 my-4">
+          <LabelFormulario text="Clave inicial"></LabelFormulario>
+          <InputFormulario
+            type="password"
+            name="password"
+            onChange={onChange}
+            value={conductor.password}
+          ></InputFormulario>
+          {/* <div className="mx-52 my-4">
             <Icon icon="entypo:upload" width="60" height="50" color="#4380CC" />
           </div>
           <div className="mx-52 my-4">
@@ -140,18 +179,15 @@ export default function CrearConductor({
           </div>
           <div className="text-center my-2">
             <LabelFormulario text="Subir imagen de la licencia de conducción"></LabelFormulario>
-          </div>
-          <div className="text-center">
+          </div> */}
+          <div className="text-center mt-4">
             <Boton text="Cancelar"></Boton>
           </div>
-          <div className="text-center">
+          <div className="text-center mt-4">
             <Boton onClick={crearConductor} text="Crear"></Boton>
           </div>
         </form>
       </div>
-      {/* <div className="mt-60">
-        <Footer></Footer>
-      </div> */}
     </div>
   );
 }
