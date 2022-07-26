@@ -80,7 +80,6 @@ export default function CrearConductor({
         password: conductor.password,
       });
       if (error) throw error;
-      alert("Valida tu correo");
       console.log(user);
       console.log(session);
     } catch (error) {

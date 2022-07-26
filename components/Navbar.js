@@ -139,12 +139,12 @@ function SideNavbar() {
       const idTipoUsuario = conductores.data[0].idTipoUsuario;
 
       if (idTipoUsuario == 1) {
-        setMenu([empresa]);
+        setMenu([...empresa]);
       } else if (idTipoUsuario == 2) {
         console.log(conductor);
         setMenu([...conductor]);
       } else if (idTipoUsuario == 3) {
-        setMenu([administrador]);
+        setMenu([...administrador]);
       }
       console.log(Menus);
     } catch (error) {

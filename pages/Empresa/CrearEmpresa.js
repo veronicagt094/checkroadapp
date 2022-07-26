@@ -1,12 +1,11 @@
 import InputFormulario from "../../components/InputFormulario";
 import LabelFormulario from "../../components/LabelFormulario";
+import { createStandaloneToast } from "@chakra-ui/toast";
 import { supabase } from "../../utils/supabaseClient";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import Boton from "../../components/Boton";
 import { useState } from "react";
-import * as ReactDOM from "react-dom/client";
-import { createStandaloneToast } from "@chakra-ui/toast";
 
 export default function CrearEmpresa() {
   const [empresa, setEmpresa] = useState([]);
@@ -35,13 +34,6 @@ export default function CrearEmpresa() {
         },
       ])
       .single();
-    // toast({
-    //   title: "An error occurred.",
-    //   description: "Unable to create user account.",
-    //   status: "error",
-    //   duration: 9000,
-    //   isClosable: true,
-    // });
   }
 
   return (
@@ -96,7 +88,7 @@ export default function CrearEmpresa() {
             <Icon icon="entypo:upload" width="60" height="50" color="#4380CC" />
           </div> */}
           {/* <div className="text-center my-2">
-            <LabelFormulario text="Cámara y comercio"></LabelFormulario>
+            <LabelFormul ario text="Cámara y comercio"></LabelFormulario>
           </div> */}
 
           <div className="text-center mt-4">

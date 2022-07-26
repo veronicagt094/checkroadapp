@@ -76,17 +76,17 @@ export default function ChequeoPreoperacionalForm1() {
             <LabelItemChequeo
               name="estado2"
               num="1.2"
-              text="Aseo Externo"
+              text="Aseo Interno"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado3"
               num="1.3"
-              text="Aseo Externo"
+              text="Latas"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado4"
               num="1.4"
-              text="Aseo Externo"
+              text="Pintura"
             ></LabelItemChequeo>
             <LabelHeaderChequeo
               num="2"
@@ -95,22 +95,22 @@ export default function ChequeoPreoperacionalForm1() {
             <LabelItemChequeo
               name="estado4"
               num="1.1"
-              text="Aseo Externo"
+              text="Aire acondicionado"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado5"
               num="1.2"
-              text="Aseo Externo"
+              text="Silleteria(Anclaje, estado)"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado6"
               num="1.3"
-              text="Aseo Externo"
+              text="Encendedor"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado7"
               num="1.4"
-              text="Aseo Externo"
+              text="Luz Interior o de techo"
             ></LabelItemChequeo>
             <LabelHeaderChequeo
               num="2"
@@ -119,47 +119,47 @@ export default function ChequeoPreoperacionalForm1() {
             <LabelItemChequeo
               name="estado17"
               num="1.1"
-              text="Aseo Externo"
+              text="Nivel de aceite de motor"
             ></LabelItemChequeo>
           </form>
           <form className="shadow-md mx-4 rounded-lG">
             <LabelHeaderChequeo
               num="1"
-              text="ESTADO DE PRESENTACIÓN"
+              text="NIVELES Y PERDIDAS DE LÍQUIDOS"
             ></LabelHeaderChequeo>
             <LabelItemChequeo
               name="estado8"
               num="1.1"
-              text="Aseo Externo"
+              text="Nivel de liquido de frenos"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado9"
               num="1.2"
-              text="Aseo Externo"
+              text="Nivel de agua del radiador"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado10"
               num="1.3"
-              text="Aseo Externo"
+              text="Nivel de agua de la batería"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado11"
               num="1.4"
-              text="Aseo Externo"
+              text="Nivel de aceite hidraulico"
             ></LabelItemChequeo>
             <LabelHeaderChequeo
               num="2"
-              text="ESTADO DE COMODIDAD"
+              text="TABLERO DE CONTROL"
             ></LabelHeaderChequeo>
             <LabelItemChequeo
               name="estado12"
               num="1.1"
-              text="Aseo Externo"
+              text="Instrumentos"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado13"
               num="1.2"
-              text="Aseo Externo"
+              text="Luces del tablero"
             ></LabelItemChequeo>
             <LabelItemChequeo
               name="estado14"

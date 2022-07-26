@@ -1,15 +1,27 @@
-import InputFormulario from "../../components/InputFormulario";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
-import Boton from "../../components/Boton";
+import InputFormulario from "../../../components/InputFormulario";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
+import Boton from "../../../components/Boton";
 import Router from "next/router";
+import { useState } from "react";
 
 export default function ActualizarEmpresa() {
+  const [numDoc, setNumDoc] = useState([]);
+  const { nit } = numDoc;
+
   async function actualizarEmpresa(e) {
     e.preventDefault();
-    Router.push("/ActualizarEmpresaForm");
-    console.log("Next");
+    Router.push({
+      pathname: "./ActualizarEmpresa/[nit]",
+      query: { nit: numDoc.nit },
+    });
   }
+
+  function onChange(e) {
+    e.preventDefault();
+    setNumDoc(() => ({ ...numDoc, [e.target.name]: e.target.value }));
+  }
+
   return (
     <div className="flex bg-fondo h-screen">
       <div className="w-1/4">
@@ -25,7 +37,14 @@ export default function ActualizarEmpresa() {
 
         <form className="shadow-md rounded-xl bg-blanco grid grid-col-1 py-20 mx-48 my-24">
           <div className="text-center">
-            <InputFormulario placeholder="NIT"></InputFormulario>
+            <InputFormulario
+              id="nit"
+              type="text"
+              name="nit"
+              onChange={onChange}
+              value={numDoc.nit}
+              placeholder="NIT"
+            ></InputFormulario>
           </div>
 
           <div className="flex py-12 mx-32">
